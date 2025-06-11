@@ -7,6 +7,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
+import { useLang } from "@/lib/providers/LangProvider";
 import { randomNumbers } from "@/lib/utils";
 
 interface GeneratorProps {
@@ -29,16 +30,20 @@ const Generator = ({
   handleGenerate,
 }: GeneratorProps) => {
   const handleClick = () => {
-    console.log(`Generating ${count} random numbers between ${min} and ${max}`);
     handleGenerate(randomNumbers(min, max, count));
   };
+  const { language } = useLang();
+  const title = language === "ko" ? "난수 생성기" : "Random Number Generator";
+  const description =
+    language === "ko"
+      ? "최소값과 최대값을 입력하고, 생성할 난수의 개수를 선택하세요."
+      : "Enter the minimum and maximum values, and select the number of random numbers to generate.";
+  const placeholderText = language === "ko" ? "개수 선택" : "Select count";
+  const buttonText = language === "ko" ? "생성" : "Generate";
   return (
     <>
-      <h2 className="text-lg font-semibold">Random Number Generator</h2>
-      <p>
-        최소값과 최대값을 입력하세요 (1~100), 그리고 생성할 난수의 개수를
-        입력하세요 (50~70개).
-      </p>
+      <h2 className="text-lg font-semibold">{title}</h2>
+      <p>{description}&nbsp;(50-70)</p>
       <div className="flex flex-row gap-4 w-full">
         <Slider
           value={[min, max]}
@@ -56,7 +61,7 @@ const Generator = ({
           }}
         >
           <SelectTrigger className="w-32">
-            <SelectValue placeholder="Select count" />
+            <SelectValue placeholder={placeholderText} />
           </SelectTrigger>
           <SelectContent>
             {Array.from({ length: 21 }, (_, i) => i + 50).map((i) => (
@@ -72,7 +77,7 @@ const Generator = ({
         onClick={handleClick}
         disabled={min >= max || count < 50 || count > 70}
       >
-        Generate
+        {buttonText}
       </Button>
     </>
   );
