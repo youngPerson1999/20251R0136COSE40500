@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { SortName, sorts } from "@/lib/sorts";
+import timeCalculate from "@/lib/time";
 
 interface ResultCardProps {
   sortName: SortName;
@@ -7,14 +8,15 @@ interface ResultCardProps {
 }
 const ResultCard = ({ sortName, input }: ResultCardProps) => {
   const sortFunc = sorts[sortName];
-  const { results, comparisonCount, swapCount } = sortFunc(input);
+  const { result, duration } = timeCalculate(sortFunc, input);
+
   return (
     <Card className="mt-4 p-4">
       <CardContent>
         <h3 className="text-lg font-semibold">{sortName}</h3>
-        <p>Sorted: {results.join(", ")}</p>
-        <p>Comparisons: {comparisonCount}</p>
-        <p>Swaps: {swapCount}</p>
+        <p>Comparisons: {result.comparisonCount}</p>
+        <p>Swaps: {result.swapCount}</p>
+        <p>Duration: {duration}ms</p>
       </CardContent>
     </Card>
   );
