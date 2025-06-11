@@ -7,8 +7,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { useLang } from "@/lib/providers/LangProvider";
 import { randomNumbers } from "@/lib/utils";
+import { useRef, useState } from "react";
 
 interface GeneratorProps {
   min: number;
@@ -29,9 +35,20 @@ const Generator = ({
   setCount,
   handleGenerate,
 }: GeneratorProps) => {
+  const triggerRef = useRef<HTMLDivElement | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    if (disabled) setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (disabled) setIsHovered(false);
+  };
   const handleClick = () => {
     handleGenerate(randomNumbers(min, max, count));
   };
+  const disabled = min >= max || count < 50 || count > 70;
   const { language } = useLang();
   const title = language === "ko" ? "난수 생성기" : "Random Number Generator";
   const description =
@@ -40,6 +57,10 @@ const Generator = ({
       : "Enter the minimum and maximum values, and select the number of random numbers to generate.";
   const placeholderText = language === "ko" ? "개수 선택" : "Select count";
   const buttonText = language === "ko" ? "생성" : "Generate";
+  const tooltipText =
+    language === "ko"
+      ? "난수의 개수를 선택해주세요"
+      : "Please select the count of random numbers";
   return (
     <>
       <h2 className="text-lg font-semibold">{title}</h2>
@@ -72,13 +93,24 @@ const Generator = ({
           </SelectContent>
         </Select>
       </div>
-      <Button
-        className="w-full"
-        onClick={handleClick}
-        disabled={min >= max || count < 50 || count > 70}
+      <div
+        ref={triggerRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        {buttonText}
-      </Button>
+        <Tooltip open={disabled && isHovered}>
+          <TooltipTrigger asChild>
+            <Button
+              className="w-full"
+              onClick={handleClick}
+              disabled={disabled}
+            >
+              {buttonText}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>{tooltipText}</TooltipContent>
+        </Tooltip>
+      </div>
     </>
   );
 };

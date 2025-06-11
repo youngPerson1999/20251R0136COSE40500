@@ -28,12 +28,23 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100 flex flex-col justify-between min-h-screen`}
       >
         <LanguageProvider>
           <LanguageSelector />
           {children}
         </LanguageProvider>
+        <footer className="border-t mt-auto py-4 text-center text-sm text-gray-500">
+          © 2025 —{" "}
+          <a
+            href="https://github.com/youngPerson1999"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-black transition-colors"
+          >
+            GitHub
+          </a>
+        </footer>
       </body>
     </html>
   );
