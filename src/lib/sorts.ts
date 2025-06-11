@@ -244,4 +244,8 @@ const sorts = {
   countingSort,
 };
 
-export { sorts };
+export type SortName = keyof typeof sorts;
+
+const sortNames = Object.keys(sorts) as (keyof typeof sorts)[];
+
+export { sorts, sortNames };

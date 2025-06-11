@@ -31,7 +31,7 @@ const RandomNumberGenerator = ({
   };
 
   return (
-    <div className="flex flex-col max-w-[800px] gap-4">
+    <div className="flex flex-col gap-4 max-w-[800px] w-full ">
       <Generator
         min={min}
         max={max}
