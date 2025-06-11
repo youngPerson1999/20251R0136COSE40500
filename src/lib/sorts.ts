@@ -1,4 +1,3 @@
-// 📝 bubbleSort (이미 있음)
 const bubbleSort = (arr: number[]): number[] => {
   const n = arr.length;
   let swapped: boolean;
@@ -16,7 +15,6 @@ const bubbleSort = (arr: number[]): number[] => {
   return arr;
 };
 
-// 📝 selectionSort (이미 있음)
 const selectionSort = (arr: number[]): number[] => {
   const n = arr.length;
 
@@ -35,7 +33,6 @@ const selectionSort = (arr: number[]): number[] => {
   return arr;
 };
 
-// 📝 insertionSort
 const insertionSort = (arr: number[]): number[] => {
   const n = arr.length;
   for (let i = 1; i < n; i++) {
@@ -50,7 +47,6 @@ const insertionSort = (arr: number[]): number[] => {
   return arr;
 };
 
-// 📝 mergeSort
 const mergeSort = (arr: number[]): number[] => {
   if (arr.length <= 1) return arr;
 
@@ -75,7 +71,6 @@ const merge = (left: number[], right: number[]): number[] => {
   return result.concat(left.slice(i)).concat(right.slice(j));
 };
 
-// 📝 quickSort
 const quickSort = (arr: number[]): number[] => {
   if (arr.length <= 1) return arr;
 
@@ -94,7 +89,6 @@ const quickSort = (arr: number[]): number[] => {
   return [...quickSort(left), pivot, ...quickSort(right)];
 };
 
-// 📝 heapSort
 const heapSort = (arr: number[]): number[] => {
   const n = arr.length;
 
@@ -124,7 +118,6 @@ const heapSort = (arr: number[]): number[] => {
   return arr;
 };
 
-// 📝 shellSort
 const shellSort = (arr: number[]): number[] => {
   const n = arr.length;
   let gap = Math.floor(n / 2);
@@ -145,7 +138,6 @@ const shellSort = (arr: number[]): number[] => {
   return arr;
 };
 
-// 📝 countingSort
 const countingSort = (arr: number[]): number[] => {
   if (arr.length === 0) return arr;
 
@@ -168,7 +160,6 @@ const countingSort = (arr: number[]): number[] => {
   return arr;
 };
 
-// 📝 radixSort (LSD radix sort, base 10)
 const radixSort = (arr: number[]): number[] => {
   if (arr.length === 0) return arr;
 
@@ -208,7 +199,6 @@ const countingSortForRadix = (arr: number[], exp: number) => {
   }
 };
 
-// 📝 bucketSort
 const bucketSort = (arr: number[]): number[] => {
   if (arr.length === 0) return arr;
 
@@ -235,7 +225,6 @@ const bucketSort = (arr: number[]): number[] => {
   return arr;
 };
 
-// 👉 export all sorts
 export const sorts = {
   bubbleSort,
   selectionSort,
