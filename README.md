@@ -28,6 +28,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy
 
+위 도메인으로 배포되어 있습니다.
 This project is deployed at:
 👉 [https://www.cose401comparesort.duckdns.org/dashboard](https://www.cose401comparesort.duckdns.org/dashboard)
 
