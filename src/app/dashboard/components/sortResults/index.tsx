@@ -12,7 +12,10 @@ const SortResults = ({ results }: SortResultsProps) => {
     <div className="mt-8 border-t w-full flex flex-col p-2 max-w-[800px]">
       <h2 className="text-lg font-semibold mb-4">Sort Results</h2>
       <Card>
-        <CardContent>sorted result: {sortedResults.join(", ")}</CardContent>
+        <CardContent>
+          <div className="font-semibold">sorted result: </div>
+          <div>{sortedResults.join(", ")}</div>
+        </CardContent>
       </Card>
       {names.map((sortName) => (
         <ResultCard key={sortName} sortName={sortName} input={results} />

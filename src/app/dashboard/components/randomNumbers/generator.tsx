@@ -67,7 +67,11 @@ const Generator = ({
           </SelectContent>
         </Select>
       </div>
-      <Button className="w-full" onClick={handleClick}>
+      <Button
+        className="w-full"
+        onClick={handleClick}
+        disabled={min >= max || count < 50 || count > 70}
+      >
         Generate
       </Button>
     </>

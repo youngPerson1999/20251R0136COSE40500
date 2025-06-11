@@ -11,7 +11,7 @@ const ResultCard = ({ sortName, input }: ResultCardProps) => {
   const { result, duration } = timeCalculate(sortFunc, input);
 
   return (
-    <Card className="mt-4 p-4">
+    <Card className="mt-4 py-4">
       <CardContent>
         <h3 className="text-lg font-semibold">{sortName}</h3>
         <p>Comparisons: {result.comparisonCount}</p>
