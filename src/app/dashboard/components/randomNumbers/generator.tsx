@@ -37,7 +37,7 @@ const Generator = ({
       <h2 className="text-lg font-semibold">Random Number Generator</h2>
       <p>
         최소값과 최대값을 입력하세요 (1~100), 그리고 생성할 난수의 개수를
-        입력하세요 (1~20개).
+        입력하세요 (50~70개).
       </p>
       <div className="flex flex-row gap-4 w-full">
         <Slider
@@ -59,9 +59,9 @@ const Generator = ({
             <SelectValue placeholder="Select count" />
           </SelectTrigger>
           <SelectContent>
-            {[...Array(20).keys()].map((i) => (
-              <SelectItem key={i + 1} value={`${i + 1}`}>
-                {i + 1}개
+            {Array.from({ length: 21 }, (_, i) => i + 50).map((i) => (
+              <SelectItem key={i} value={`${i}`}>
+                {i}개
               </SelectItem>
             ))}
           </SelectContent>
